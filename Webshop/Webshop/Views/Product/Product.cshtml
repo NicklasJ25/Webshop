@@ -1,2 +1,28 @@
-﻿<h2>@ViewBag.Title</h2>
+﻿@using Webshop.Models
+@model Product
+
+<h2>@Model.Title</h2>
+
+<div class="col-md-6">
+    <div class="col-md-3">
+        <input type="image" src="/Images/Airmax2.jpg" class="img-rounded" onclick="changePicture('/Images/Airmax2.jpg')" style="max-height:140px; max-width:140px;" />
+        <input type="image" src="/Images/Airmax.jpg" class="img-rounded" onclick="changePicture('/Images/Airmax.jpg')" style="max-height:140px; max-width:140px;" />
+        <input type="image" src="/Images/Airmax2.jpg" class="img-rounded" onclick="changePicture('/Images/Airmax2.jpg')" style="max-height:140px; max-width:140px;" />
+        <input type="image" src="/Images/Airmax.jpg" class="img-rounded" onclick="changePicture('/Images/Airmax.jpg')" style="max-height:140px; max-width:140px;" />
+    </div>
+    <div class="col-md-9">
+        <img id="image" src="~/Images/Airmax.jpg" class="img-rounded" style="max-height:560px; max-width:560px;" />
+    </div>
+</div>
+<div class="col-md-6">
+    <button type="button" class="btn btn-default" onclick="@Url.Action("AddToCart", "Product")">Læg i kurv</button>
+    <a href="@Url.Action("AddToCart", "Product", new { productId = Model.Id })" class="btn btn-default">Læg i kurv</a>
+</div>
+
+<script>
+    function changePicture(url) {
+        var element = document.getElementById('image')
+        element.src = url;
+    }
+</script>
 

@@ -24,9 +24,19 @@ namespace Webshop.Controllers
         public ActionResult Product(int productId)
         {
             Product product = APIManager.Get<Product>("Product/" + productId);
-            ViewBag.Title = product.Title;
 
             return View(product);
+        }
+
+        public void AddToCart(int productId)
+        {
+            List<int> cart = new List<int>();
+            if (Session["Cart"] != null)
+            {
+                cart.AddRange((IEnumerable<int>)Session["Cart"]);
+            }
+            cart.Add(productId);
+            Session["Cart"] = cart;
         }
     }
 }

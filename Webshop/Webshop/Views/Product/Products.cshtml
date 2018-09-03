@@ -9,6 +9,7 @@
 
 @{ 
     List<string> brands = Model.Select(x => x.Brand).ToList();
+    brands.RemoveAll(x => x == null);
     List<Size> sizes = Model.SelectMany(x => x.Size).ToList();
     List<Color> colors = Model.SelectMany(x => x.Color).ToList();
 }
