@@ -1,0 +1,61 @@
+﻿@using Webshop.Models
+@model List<Product>
+
+<h2>@ViewBag.Title</h2>
+
+<div class="input-group">
+
+</div>
+
+@{ 
+    List<string> brands = Model.Select(x => x.Brand).ToList();
+    List<Size> sizes = Model.SelectMany(x => x.Size).ToList();
+    List<Color> colors = Model.SelectMany(x => x.Color).ToList();
+}
+
+<div class="col-md-2">
+    <h3>Mærker</h3>
+    @foreach (string brand in brands)
+    {
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+            <label class="form-check-label" for="defaultCheck1">
+                @brand
+            </label>
+        </div>
+    }
+    <h3>Farver</h3>
+    @foreach (Color color in colors)
+    {
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+            <label class="form-check-label" for="defaultCheck2">
+                @color.Title
+            </label>
+        </div>
+    }
+    <h3>Størrelser</h3>
+    @foreach (Size size in sizes)
+    {
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="defaultCheck3">
+            <label class="form-check-label" for="defaultCheck3">
+                @size.Title
+            </label>
+        </div>
+    }
+</div>
+
+<div class="col-md-10">
+    @foreach (Product product in Model)
+    {
+        <div class="col-md-4">
+            <a href="@Url.Action("Product", "Product", new { productId = product.Id })" class="thumbnail">
+                <img src="~/Images/Airmax.jpg" style="max-height:300px; max-width:300px;" />
+                <div class="caption">
+                    <h3>@product.Title</h3>
+                </div>
+            </a>
+        </div>
+    }
+</div>

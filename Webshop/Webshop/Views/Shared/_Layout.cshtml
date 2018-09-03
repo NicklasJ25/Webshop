@@ -1,4 +1,15 @@
-﻿<!DOCTYPE html>
+﻿@{
+    List<string> menus = new List<string> { "Tøj", "Sko", "Sport", "Accessories", "Designers", "Mærker", "Outlet" };
+    List<string> tøj = new List<string> { "Tøj", "Sko", "Sport", "Accessories", "Designers", "Mærker", "Outlet" };
+    List<string> sko = new List<string> { "Tøj", "Sko", "Sport", "Accessories", "Designers", "Mærker", "Outlet" };
+    List<string> sport = new List<string> { "Tøj", "Sko", "Sport", "Accessories", "Designers", "Mærker", "Outlet" };
+    List<string> accessories = new List<string> { "Tøj", "Sko", "Sport", "Accessories", "Designers", "Mærker", "Outlet" };
+    List<string> designers = new List<string> { "Tøj", "Sko", "Sport", "Accessories", "Designers", "Mærker", "Outlet" };
+    List<string> mærker = new List<string> { "Tøj", "Sko", "Sport", "Accessories", "Designers", "Mærker", "Outlet" };
+    List<string> outlet = new List<string> { "Tøj", "Sko", "Sport", "Accessories", "Designers", "Mærker", "Outlet" };
+} 
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -17,13 +28,14 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Webshop", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    @foreach (string menu in menus)
+                    {
+                        <li>@Html.ActionLink(menu, "Products", "Product", new { type = menu }, null)</li>
+                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

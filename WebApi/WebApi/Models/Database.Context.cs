@@ -25,6 +25,9 @@ namespace WebApi.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Menu> Menu { get; set; }
+        public virtual DbSet<Color> Color { get; set; }
         public virtual DbSet<Product> Product { get; set; }
+        public virtual DbSet<Size> Size { get; set; }
     }
 }

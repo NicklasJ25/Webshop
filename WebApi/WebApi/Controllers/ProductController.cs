@@ -12,33 +12,33 @@ namespace WebApi.Controllers
     {
         WebshopEntities database = new WebshopEntities();
 
-        // GET api/values
+        // GET api/Product
         public List<Product> Get()
         {
             List<Product> products = database.Product.ToList();
             return products;
         }
 
-        // GET api/values/5
+        // GET api/Product/5
         public Product Get(int id)
         {
             Product product = database.Product.Find(id);
             return product;
         }
 
-        // POST api/values
+        // POST api/Product
         public void Post([FromBody]Product product)
         {
             database.Product.Add(product);
             database.SaveChanges();
         }
 
-        // PUT api/values/5
+        // PUT api/Product/5
         public void Put(int id, [FromBody]string value)
         {
         }
 
-        // DELETE api/values/5
+        // DELETE api/Product/5
         public void Delete(int id)
         {
             Product product = database.Product.Find(id);

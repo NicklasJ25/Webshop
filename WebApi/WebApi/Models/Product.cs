@@ -14,7 +14,21 @@ namespace WebApi.Models
     
     public partial class Product
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Product()
+        {
+            this.Color = new HashSet<Color>();
+            this.Size = new HashSet<Size>();
+        }
+    
         public int Id { get; set; }
         public string Title { get; set; }
+        public string Type { get; set; }
+        public string Brand { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Color> Color { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Size> Size { get; set; }
     }
 }
