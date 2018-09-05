@@ -28,15 +28,23 @@ namespace Webshop.Controllers
             return View(product);
         }
 
-        public void AddToCart(int productId)
+        public ActionResult AddToCart(int productId)
         {
-            List<int> cart = new List<int>();
-            if (Session["Cart"] != null)
+            try
             {
-                cart.AddRange((IEnumerable<int>)Session["Cart"]);
+                List<int> cart = new List<int>();
+                if (Session["Cart"] != null)
+                {
+                    cart.AddRange((IEnumerable<int>)Session["Cart"]);
+                }
+                cart.Add(productId);
+                Session["Cart"] = cart;
+                return Json(new { success = true, responseText = "Produkt er tilføjet til kurven" }, JsonRequestBehavior.AllowGet);
             }
-            cart.Add(productId);
-            Session["Cart"] = cart;
+            catch (Exception e)
+            {
+                return Json(new { success = false, responseText = "Der skete en fejl!" }, JsonRequestBehavior.AllowGet);
+            }
         }
     }
 }

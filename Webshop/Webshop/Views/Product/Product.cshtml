@@ -15,14 +15,30 @@
     </div>
 </div>
 <div class="col-md-6">
-    <button type="button" class="btn btn-default" onclick="@Url.Action("AddToCart", "Product")">Læg i kurv</button>
-    <a href="@Url.Action("AddToCart", "Product", new { productId = Model.Id })" class="btn btn-default">Læg i kurv</a>
+    <button type="button" class="btn btn-default" onclick="addToCart(@Model.Id)">Læg i kurv</button>
 </div>
 
 <script>
     function changePicture(url) {
         var element = document.getElementById('image')
         element.src = url;
+    }
+
+    function addToCart(productId) {
+        $.ajax({
+            type: "POST",
+            url: "/Product/AddToCart",
+            data: '{ productId : ' + productId + ' }',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+                updateCart(2);
+                alert("Product er tilføjet til kurven");
+            },
+            error: function (response) {
+                alert("FEJL");
+            }
+        });
     }
 </script>
 
